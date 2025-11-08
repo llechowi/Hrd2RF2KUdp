@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Hrd2Udp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="HRDAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="HRDPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7809</Value>
+    </Setting>
+    <Setting Name="RF2KAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.68.67</Value>
+    </Setting>
+    <Setting Name="RF2KPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">12060</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
