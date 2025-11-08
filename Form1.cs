@@ -88,42 +88,6 @@ namespace Hrd2Udp
             }
         }
 
-        //private void btnSend_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (stream != null && client.Connected)
-        //        {
-        //            // Create and send the message
-        //            string msg = txtMessage.Text.Trim().Replace(';', '\x09');
-        //            byte[] messageBytes = CreateMessage(msg);
-        //            stream.Write(messageBytes, 0, messageBytes.Length);
-        //            stream.Flush();
-
-        //            txtStatus.AppendText($"[{DateTime.Now:HH:mm:ss}] Sent: {txtMessage.Text}\n");
-
-        //            // Receive the response
-        //            byte[] response = ReceiveMessage();
-        //            if (response != null)
-        //            {
-        //                string responseText = ParseMessage(response);
-        //                //txtResponse.AppendText($"[{DateTime.Now:HH:mm:ss}] Received: {responseText}\n\n");
-        //                txtStatus.AppendText($"{responseText}\n\n");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Not connected to server", "Warning",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Communication error: {ex.Message}", "Error",
-        //            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
         private byte[] CreateMessage(string text)
         {
             // Encode the text in UTF-16 with null terminator
@@ -131,7 +95,7 @@ namespace Hrd2Udp
             byte[] szText = Encoding.Unicode.GetBytes(textWithNull);
 
             // Calculate total message size
-            int nSize = szText.Length+16;
+            int nSize = szText.Length + 16;
             uint nSanity1 = 0x1234ABCD;
             uint nSanity2 = 0xABCD1234;
             uint nChecksum = 0;
@@ -154,10 +118,6 @@ namespace Hrd2Udp
         {
             try
             {
-                //byte[] message = new byte[200];
-                //int bytesRead = 0;
-                //int read = stream.Read(message, bytesRead, 16);
-                // Read the header (16 bytes)
                 byte[] header = new byte[16];
                 int bytesRead = 0;
                 while (bytesRead < 16)
@@ -273,8 +233,6 @@ namespace Hrd2Udp
                 stream.Write(messageBytes, 0, messageBytes.Length);
                 stream.Flush();
 
-                //txtStatus.AppendText($"[{DateTime.Now:HH:mm:ss}] Sent: {txtMessage.Text}\n");
-
                 // Receive the response
                 byte[] response = ReceiveMessage();
                 if (response != null)
@@ -306,7 +264,6 @@ namespace Hrd2Udp
 
                             // Send UDP packet
                             udpClient.Send(data, data.Length, udpAddr, udpPort);
-                            //Console.WriteLine($"Sent XML to {_udpHost}:{_udpPort}");
                         }
                         catch (Exception ex)
                         {
