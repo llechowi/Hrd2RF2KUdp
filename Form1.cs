@@ -22,6 +22,10 @@ namespace Hrd2Udp
         private int udpPort;
 
         private uint prevFreq = 0;
+        
+        private const uint MAX_SKIPPED_TICKS = 10;
+        private uint skippedTicks = 0;
+
 
         public Form1()
         {
@@ -238,9 +242,15 @@ namespace Hrd2Udp
                 if (response != null)
                 {
                     uint txFrequency = GetTXFrequency(response);
-                    if (prevFreq != txFrequency)
+                    if ((prevFreq == txFrequency) && (skippedTicks < MAX_SKIPPED_TICKS))
+                    {
+                        skippedTicks++;
+                        return;
+                    }
+                    else
                     {
                         prevFreq = txFrequency;
+                        skippedTicks = 0;
                         try
                         {
                             // Create XML document
